@@ -1,0 +1,30 @@
+{
+  "name": "reaway/think-response",
+  "type": "library",
+  "description": "think response",
+  "keywords": [],
+  "homepage": "https://github.com/reaway/think-response",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "reaway",
+      "email": "reaway@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0",
+    "ext-fileinfo": "*",
+    "ext-json": "*",
+    "reaway/think-container": "^1.0",
+    "reaway/think-cookie": "^1.0",
+    "reaway/think-session": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Think\\Component\\Response\\": "src/"
+    },
+    "files": [
+      "src/helper.php"
+    ]
+  }
+}
