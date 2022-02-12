@@ -14,7 +14,7 @@ namespace Think\Component\Response\Driver;
 
 use Think\Component\Cookie\Cookie;
 use Think\Component\Response\Response;
-use think\View as BaseView;
+use Think\Component\View\View as BaseView;
 
 /**
  * View Response
