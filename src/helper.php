@@ -12,11 +12,27 @@ declare (strict_types=1);
 
 use Think\Component\Response\Response;
 use Think\Component\Response\Driver\File;
+use Think\Component\Response\Driver\Html;
 use Think\Component\Response\Driver\Json;
 use Think\Component\Response\Driver\Jsonp;
 use Think\Component\Response\Driver\Redirect;
 use Think\Component\Response\Driver\View;
 use Think\Component\Response\Driver\Xml;
+
+if (!function_exists('response')) {
+    /**
+     * 创建普通 Response 对象实例
+     * @param mixed      $data   输出数据
+     * @param int|string $code   状态码
+     * @param array      $header 头信息
+     * @param string     $type
+     * @return Response
+     */
+    function response($data = '', $code = 200, $header = [], $type = 'html'): Response
+    {
+        return Response::create($data, $type, $code)->header($header);
+    }
+}
 
 if (!function_exists('download')) {
     /**
@@ -30,6 +46,21 @@ if (!function_exists('download')) {
     function download(string $filename, string $name = '', bool $content = false, int $expire = 180): File
     {
         return Response::create($filename, 'file')->name($name)->isContent($content)->expire($expire);
+    }
+}
+
+if (!function_exists('html')) {
+    /**
+     * 获取Xml对象实例
+     * @param string $data    返回的数据
+     * @param int   $code    状态码
+     * @param array $header  头部
+     * @param array $options 参数
+     * @return Html
+     */
+    function html($data = '', $code = 200, $header = [], $options = []): Html
+    {
+        return Response::create($data, 'html', $code)->header($header)->options($options);
     }
 }
 
@@ -73,21 +104,6 @@ if (!function_exists('redirect')) {
     function redirect(string $url = '', int $code = 302): Redirect
     {
         return Response::create($url, 'redirect', $code);
-    }
-}
-
-if (!function_exists('response')) {
-    /**
-     * 创建普通 Response 对象实例
-     * @param mixed      $data   输出数据
-     * @param int|string $code   状态码
-     * @param array      $header 头信息
-     * @param string     $type
-     * @return Response
-     */
-    function response($data = '', $code = 200, $header = [], $type = 'html'): Response
-    {
-        return Response::create($data, $type, $code)->header($header);
     }
 }
 

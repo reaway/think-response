@@ -106,7 +106,7 @@ abstract class Response
      */
     public static function create($data = '', string $type = 'html', int $code = 200): Response
     {
-        $class = false !== strpos($type, '\\') ? $type : '\\think\\response\\' . ucfirst(strtolower($type));
+        $class = false !== strpos($type, '\\') ? $type : '\\Think\\Component\Response\\Driver\\' . ucfirst(strtolower($type));
 
         return Container::getInstance()->invokeClass($class, [$data, $code]);
     }
